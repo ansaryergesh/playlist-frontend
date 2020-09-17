@@ -1,39 +1,38 @@
 export const genreLoading = () => ({
     type: 'GENRE_LOADING',
-  });
+});
   
-  export const genreFailed = errmess => ({
+export const genreFailed = errmess => ({
     type: 'GENRE_FAILED',
     payload: errmess,
-  });
-  export const addGenre = genre => ({
+});
+export const addGenre = genre => ({
     type: 'ADD_GENRE',
     payload: genre,
-  });
+});
 
-  export const fetchHouses = () => dispatch => {
+export const fetchGenres = () => dispatch => {
     dispatch(genreLoading(true));
     return fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/v1/homes`, {
-      headers: {
+        headers: {
         'Content-Type': 'application/json',
         Accept: 'application/json',
-      },
+        },
     })
-      .then(response => {
+        .then(response => {
         if (response.ok) {
-          return response;
+            return response;
         }
-  
+
         const error = new Error(`Error ${response.status}: ${response.statusText}`);
         error.response = response;
         throw error;
-      },
-      error => {
+        },
+        error => {
         const errmess = new Error(error.message);
         throw errmess;
-      })
-      .then(response => response.json())
-      .then(genres => dispatch(addGenre(genres)))
-      .catch(error => dispatch(genreFailed(error.message)));
-  };
-  
+        })
+        .then(response => response.json())
+        .then(genres => dispatch(addGenre(genres)))
+        .catch(error => dispatch(genreFailed(error.message)));
+};
