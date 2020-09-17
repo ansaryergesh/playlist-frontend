@@ -13,7 +13,7 @@ export const addSinger = singer => ({
 
 export const fetchSingers = () => dispatch => {
     dispatch(singerLoading(true));
-    return fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/v1/homes`, {
+    return fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/singers`, {
         headers: {
         'Content-Type': 'application/json',
         Accept: 'application/json',

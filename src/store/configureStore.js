@@ -1,15 +1,15 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
-import { Singers } from '../reducers/singerReducer';
-import { Genres } from '../reducers/genreReducer';
-import { Musics } from '../reducers/musicReducer';
+import singerReducer from '../reducers/singerReducer';
+import genreReducer from '../reducers/genreReducer';
+import musicReducer from '../reducers/musicReducer';
 export const ConfigureStore = () => {
   const store = createStore(
     combineReducers({
-      singer: Singers,
-      genres: Genres,
-      musics: Musics
+      singer: singerReducer,
+      genres: genreReducer,
+      musics: musicReducer
     }),
     applyMiddleware(thunk, logger),
   );

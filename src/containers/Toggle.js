@@ -1,20 +1,26 @@
 import React, {Component} from 'react';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
+import { withRouter} from 'react-router-dom';
 
-const  Toggle = ({messageVisibility, dispatch}) => (
-    <div>
-        {messageVisibility &&
-            <p>If toggled then you will see that message</p>
-        }
-        <button onClick = {() => dispatch({
-            type: 'TOGGLE_MESSAGE',
-        }) }>Toggle me</button>
-    </div>
- 
-)
+import { fetchSingers } from '../actions/singer';
 
-const mapStateToProps = (state) => ({
-    messageVisibility: state.message.messageVisibility,
+const mapStateToProps = state => ({
+  
 });
+const mapDispacthToProps = dispatch => ({
+  fetchSingers: () => { dispatch(fetchSingers()); }
+});
+class Toggle extends Component  {
+    componentDidMount() {
+        this.props.fetchSingers();
+      }
+    render() {
+        return (
+    <div>
+        <h1>Hello</h1>
+    </div>)}
+ 
+}
 
-export default connect(mapStateToProps)(Toggle);
+
+export default withRouter(connect(mapStateToProps, mapDispacthToProps)(Toggle));

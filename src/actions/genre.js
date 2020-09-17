@@ -13,7 +13,7 @@ export const addGenre = genre => ({
 
 export const fetchGenres = () => dispatch => {
     dispatch(genreLoading(true));
-    return fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/v1/homes`, {
+    return fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/genres`, {
         headers: {
         'Content-Type': 'application/json',
         Accept: 'application/json',
