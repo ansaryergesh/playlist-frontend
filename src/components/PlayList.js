@@ -10,11 +10,27 @@ const PlayList = ({musics,loading}) => {
   
     return (
     <div>
-        <ul className="list-group mb-4">
+        <table className="table table-striped table-boarded table-hover">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Singer</th>
+                <th>Genre</th>
+                <th>Year</th>
+            </tr>
+        </thead>
+        <tbody>
             {musics.map(music=>(
-                <li className="list-group-item" key={music.key}>{music.name}</li>
+              <tr key={music.key}>
+                 <th scope="row">{music.name}</th>
+                 <td>{music.singer_name}</td>
+                 <td>{music.genre_name}</td>
+                 <td>{music.year}</td>
+             </tr>
             ))}
-        </ul>
+           
+        </tbody>
+        </table>
     </div>
     )
 }

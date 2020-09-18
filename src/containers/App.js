@@ -11,7 +11,7 @@ const App = () => {
   const[musicPerPage, setMusicPerPage] = useState(10);
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber)
-  
+
   useEffect(() => {
     const fetchMusics = async () => {
       setLoading(true);
