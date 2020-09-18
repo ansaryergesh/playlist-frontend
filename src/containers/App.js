@@ -18,6 +18,7 @@ const App = () => {
       const result = await axios.get('http://localhost:8000/api/musics');
       setMusics(result.data);
       setLoading(false)
+      console.log(result)
     }
 
     fetchMusics();
