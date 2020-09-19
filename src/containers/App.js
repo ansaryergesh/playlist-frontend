@@ -32,7 +32,7 @@ const App = () => {
       <h1 className="text-center text-primary mb-3">Playlist</h1>
       <PlayList musics={currentMusic} loading={loading}/>
       <Pagination musicPerPage={musicPerPage} totalMusics={musics.length} paginate={paginate} />
-      <PageSize setPageNumber={setPageNumber} />
+      <PageSize setPageNumber={setPageNumber} paginate={paginate} />
     </div>
   )
 }

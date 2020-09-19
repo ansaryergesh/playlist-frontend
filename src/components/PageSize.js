@@ -1,8 +1,9 @@
 import React from 'react';
 
-const PageSize= ({setPageNumber}) => {
+const PageSize= ({setPageNumber, paginate}) => {
     const handleChange = e => {
         setPageNumber(e.target.value)
+        paginate(1)
     }
     const perPageNumbers = [10,20,50,100]
     return (

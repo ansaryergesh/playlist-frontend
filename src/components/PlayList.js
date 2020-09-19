@@ -7,9 +7,13 @@ const PlayList = ({musics,loading}) => {
     if(loading) {
         return <h1>Loading</h1>
     }
-  
+    
+    if(musics.length === 0) {
+        return <h1>No data</h1>
+    }
     return (
     <div>
+        
         <table className="table table-striped table-boarded table-hover">
         <thead>
             <tr>
