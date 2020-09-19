@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PlayList from '../components/PlayList';
-import Pagination from '../components/Pagination';
+import PaginationBar from '../components/PaginationBar';
 import PageSize from '../components/PageSize'
-import Filters from '../components/Filters'
 import axios from 'axios';
 import './App.css';
 
@@ -36,7 +35,6 @@ const App = () => {
     }
 
     fetchGenres();
-
     const fetchSingers = async () => {
       setLoading(true);
       const result = await axios.get('http://localhost:8000/api/singers');
@@ -58,8 +56,13 @@ const App = () => {
         loading={loading}
         genres={genres}
         singers={singers}/>
-      <Pagination musicPerPage={musicPerPage} totalMusics={musics.length} paginate={paginate} />
-      <PageSize setPageNumber={setPageNumber} paginate={paginate} />
+      <PaginationBar 
+        musicPerPage={musicPerPage}
+        totalMusics={musics.length}
+        setPageNumber={setPageNumber}
+        paginate={paginate}
+        currentPage={currentPage}
+      />
     </div>
   )
 }

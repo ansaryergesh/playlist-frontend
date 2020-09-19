@@ -1,11 +1,9 @@
 import React from 'react'
-// import { BootstrapTable, TableHeaderColumn } from "react-bootstrap-table";
-// const MyFacebookLoader = () => <Facebook />;
 import Filters from './Filters'
-
+import { Spinner } from 'react-bootstrap'
 const PlayList = ({musics,loading,genres,singers}) => {
     if(loading) {
-        return <h1>Loading</h1>
+        return (<Spinner animation="border" variant="primary" />)
     }
     
     if(musics.length === 0) {
@@ -17,7 +15,7 @@ const PlayList = ({musics,loading,genres,singers}) => {
         <table className="table table-striped table-boarded table-hover">
         <thead>
             <tr>
-                <th>Name</th>
+                <th>Name <span>^</span></th>
                 <th>Singer</th>
                 <th>Genre</th>
                 <th>Year</th>
@@ -37,23 +35,7 @@ const PlayList = ({musics,loading,genres,singers}) => {
         </table>
         </div>
         <div className="md-3">
-        <h1>Genres</h1>
-        <select className="mb-5" name="pages" id="pages">
-            
-        <option value="Все">Все</option>
-        { genres.map(genre => (
-            <option key={genre.name} value={genre.name}>{genre.name}</option>
-        ))}
-        </select>
-        <h1>Singers</h1>
-        <select className="mb-5" name="pages" id="pages">
-        <option value="Все">Все</option>
-        { singers.map(singer => (
-
-            <option key={singer.name} value={singer.name}>{singer.name}</option>
-        ))}
-        </select>
-
+       <Filters singers={singers} genres={genres} loading={loading} />
 
     </div>
     </div>
