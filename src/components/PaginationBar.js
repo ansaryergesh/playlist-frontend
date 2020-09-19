@@ -1,26 +1,25 @@
 import React from 'react';
 import PageSize from './PageSize';
+import { Pagination, Dropdown } from "react-bootstrap";
 const PaginationBar= ({musicPerPage, totalMusics, setPageNumber, paginate, currentPage}) => {
     const pageNumbers = [];
 
     for (let i=1; i<=Math.ceil(totalMusics / musicPerPage); i++){
-        pageNumbers.push(i)
+        pageNumbers.push(
+            <Pagination.Item
+                key={i}
+                onClick={() => paginate(i)}
+                active={i === currentPage}
+            >
+            {i}
+            </Pagination.Item>
+        )
     }
     return (
         <div className="row">
         <div className="col-md-9">
         <div className="d-flex justify-content-between">
-        <div className>
-            <ul className="pagination">
-                {pageNumbers.map(number=>(
-                    <li active={number === currentPage} key={number} className="page-item">
-                        <a onClick={() => paginate(number)} href="!#" className="page-link">
-                            {number}
-                        </a>
-                    </li>
-                ))}
-            </ul>
-        </div>
+        <Pagination>{pageNumbers}</Pagination>
         <PageSize setPageNumber={setPageNumber} paginate={paginate} />
         </div>
         </div>

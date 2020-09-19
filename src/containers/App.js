@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PlayList from '../components/PlayList';
 import PaginationBar from '../components/PaginationBar';
-import PageSize from '../components/PageSize'
 import axios from 'axios';
 import './App.css';
 
