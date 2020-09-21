@@ -13,11 +13,96 @@ const App = () => {
   const[musicPerPage, setMusicPerPage] = useState(10);
   const[selectedGenre, setSelectGenre] = useState('Все');
   const[selectedSinger, setSelectSinger] = useState('Все');
+  const[sorting, setSort] = useState(null);
+  const[order, setOrder] = useState(null);
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
   const setPageNumber = (page) => setMusicPerPage(page) 
   const defaultMusics = musics;
 
+  const sortedMusics = (elems) => {
+    if(sorting === null) {
+      return elems;
+    }
+    if(order === null) {
+      return elems
+    }
+    if(sorting === 'Year') {
+      if(order === false) {
+        return elems.sort(function(a,b){
+          return a.year - b.year;
+        })
+      }else {
+        return elems.sort(function(a,b){
+          return b.year - a.year;
+        })
+      }
+    }
+    if(sorting === 'Genre') {
+      if(order === false) {
+        return elems.sort(function(a,b){
+          var nameA=a.genre_name.toLowerCase(), nameB=b.genre_name.toLowerCase();
+          if (nameA > nameB)
+            return -1 
+          if (nameA < nameB)
+            return 1
+          return 0 
+        })
+      }else {
+        return elems.sort(function(a,b){
+          var nameA=a.genre_name.toLowerCase(), nameB=b.genre_name.toLowerCase();
+          if (nameA < nameB) 
+            return -1 
+          if (nameA > nameB)
+            return 1
+          return 0 
+        })
+      }
+    }
+
+    if(sorting === 'Name') {
+      if(order === false) {
+        return elems.sort(function(a,b){
+          var nameA=a.name.toLowerCase(), nameB=b.name.toLowerCase();
+          if (nameA > nameB)
+            return -1 
+          if (nameA < nameB)
+            return 1
+          return 0 
+        })
+      }else {
+        return elems.sort(function(a,b){
+          var nameA=a.name.toLowerCase(), nameB=b.name.toLowerCase();
+          if (nameA < nameB) 
+            return -1 
+          if (nameA > nameB)
+            return 1
+          return 0 
+        })
+      }
+    }
+    if(sorting === 'Singer') {
+      if(order === false) {
+        return elems.sort(function(a,b){
+          var nameA=a.singer_name.toLowerCase(), nameB=b.singer_name.toLowerCase();
+          if (nameA > nameB)
+            return -1 
+          if (nameA < nameB)
+            return 1
+          return 0 
+        })
+      }else {
+        return elems.sort(function(a,b){
+          var nameA=a.singer_name.toLowerCase(), nameB=b.singer_name.toLowerCase();
+          if (nameA < nameB) 
+            return -1 
+          if (nameA > nameB)
+            return 1
+          return 0 
+        })
+      }
+    }
+  }
   const filteredMusics = (elems) => {
     let genreIsSelected = elems.filter(music=> music.genre_name === selectedGenre);
     let singerIsSelected = elems.filter(music=> music.singer_name === selectedSinger)
@@ -78,7 +163,7 @@ const App = () => {
   }, []);
   const indexLastMusic = currentPage * musicPerPage;
   const indexFirstMusic = indexLastMusic - musicPerPage;
-  const currentMusic = filteredMusics(musics).slice(indexFirstMusic, indexLastMusic);
+  const currentMusic = sortedMusics(filteredMusics(musics)).slice(indexFirstMusic, indexLastMusic);
   return (
     <div className = 'container mt-5'>
       <h1 className="text-center text-primary mb-3">Playlist</h1>
@@ -88,7 +173,10 @@ const App = () => {
         genres={genres}
         singers={singers}
         setSelectGenre={setSelectGenre}
-        setSelectSinger={setSelectSinger}/>
+        setSelectSinger={setSelectSinger}
+        order={order}
+        setOrder={setOrder}
+        setSort={setSort}/>
       <PaginationBar 
         musicPerPage={musicPerPage}
         totalMusics={filteredMusics(musics).length}

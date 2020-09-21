@@ -6,6 +6,21 @@ p {
   font-size: 16px !important;
 }
 
+button {
+  outline: none;
+}
+
+.headerButton {
+  border: none;
+  background-color: white;
+  outline: none;
+}
+
+.headerButton:hover {
+  background-color: rgb(212, 211, 211);
+  border: none;
+}
+
 .filterBlock {
   border-radius: 15px;
   padding: 15px;

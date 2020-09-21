@@ -1,7 +1,6 @@
 import React from 'react'
 
 const Filters = ({genres,singers,loading, setSelectGenre, setSelectSinger}) => {
-    const years = [];
     
     const handleSinger = e => {
         setSelectSinger(e.target.value);
