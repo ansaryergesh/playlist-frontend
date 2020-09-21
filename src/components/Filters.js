@@ -3,11 +3,20 @@ import React from 'react'
 // const MyFacebookLoader = () => <Facebook />;
 
 
-const Filters = ({genres,singers,loading}) => {
+const Filters = ({genres,singers,loading, setSelectGenre, setSelectSinger}) => {
+    
+    const handleSinger = e => {
+        setSelectSinger(e.target.value);
+    }
+
+    const handleGenre = e => {
+        setSelectGenre(e.target.value)
+    }
+    
     if(loading) {
         return <h1>Loading</h1>
     }
-
+    
     return (
         
     <div className="filterBlock">

@@ -11,6 +11,8 @@ const App = () => {
   const [loading, setLoading] = useState(false);
   const[currentPage, setCurrentPage] = useState(1);
   const[musicPerPage, setMusicPerPage] = useState(10);
+  const[selectedGenre, setSelectGenre] = useState('Все');
+  const[selectedSinger, setSelectSinger] = useState('Все');
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
   const setPageNumber = (page) => setMusicPerPage(page) 
@@ -61,6 +63,8 @@ const App = () => {
         setPageNumber={setPageNumber}
         paginate={paginate}
         currentPage={currentPage}
+        setSelectSinger={setSelectSinger}
+        setSelectGenre={setSelectGenre}
       />
     </div>
   )

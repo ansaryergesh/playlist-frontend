@@ -1,7 +1,7 @@
 import React from 'react'
 import Filters from './Filters'
 import { Spinner } from 'react-bootstrap'
-const PlayList = ({musics,loading,genres,singers}) => {
+const PlayList = ({musics,loading,genres,singers, setSelectGenre, setSelectSinger}) => {
     if(loading) {
         return (<Spinner animation="border" variant="primary" />)
     }
@@ -35,7 +35,7 @@ const PlayList = ({musics,loading,genres,singers}) => {
         </table>
         </div>
         <div className="md-3">
-       <Filters singers={singers} genres={genres} loading={loading} />
+       <Filters singers={singers} genres={genres} loading={loading} setSelectGenre={setSelectGenre} setSelectSinger={setSelectSinger}/>
 
     </div>
     </div>
