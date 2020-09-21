@@ -22,7 +22,7 @@ const Filters = ({genres,singers,loading, setSelectGenre, setSelectSinger}) => {
     <div className="filterBlock">
           <h4 className="mb-3">Фильтры</h4>
         <p className="mb-0">Singers</p>
-        <select  className="mt-0 mb-2"  name="pages" id="pages">
+        <select  className="mt-0 mb-2"  name="pages" id="pages" onChange={handleSinger}>
         <option value="Все">Все</option>
         { singers.map(singer => (
 
@@ -30,7 +30,7 @@ const Filters = ({genres,singers,loading, setSelectGenre, setSelectSinger}) => {
         ))}
         </select>
         <p className="mb-0">Genres</p>
-        <select className="mb-5" name="pages" id="pages">
+        <select className="mb-5" name="pages" id="pages" onChange={handleGenre}>
             
         <option value="Все">Все</option>
         { genres.map(genre => (

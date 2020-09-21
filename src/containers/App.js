@@ -16,6 +16,36 @@ const App = () => {
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
   const setPageNumber = (page) => setMusicPerPage(page) 
+  const defaultMusics = musics;
+
+  const filteredMusics = (elems) => {
+    let genreIsSelected = elems.filter(music=> music.genre_name === selectedGenre);
+    let singerIsSelected = elems.filter(music=> music.singer_name === selectedSinger)
+    if(selectedGenre === 'Все' && selectedSinger === 'Все') {
+      return defaultMusics;
+    }
+    if(selectedGenre !== 'Все') {
+      if(selectedSinger !== 'Все') {
+        return genreIsSelected.filter(music=>music.singer_name === selectedSinger);
+      }else{
+      return genreIsSelected;
+      }
+    }
+    if(selectedGenre !== 'Все') {
+      if(selectedSinger !== 'Все') {
+        return genreIsSelected.filter(music=>music.singer_name === selectedSinger);
+      }else{
+      return genreIsSelected;
+      }
+    }
+    if(selectedSinger !== 'Все') {
+      if(selectedGenre !== 'Все') {
+        return singerIsSelected.filter(music=>music.genre_name === selectedGenre);
+      }else{
+      return singerIsSelected;
+      }
+    }
+  }
   useEffect(() => {
     const fetchMusics = async () => {
       setLoading(true);
@@ -48,7 +78,7 @@ const App = () => {
   }, []);
   const indexLastMusic = currentPage * musicPerPage;
   const indexFirstMusic = indexLastMusic - musicPerPage;
-  const currentMusic = musics.slice(indexFirstMusic, indexLastMusic);
+  const currentMusic = filteredMusics(musics).slice(indexFirstMusic, indexLastMusic);
   return (
     <div className = 'container mt-5'>
       <h1 className="text-center text-primary mb-3">Playlist</h1>
@@ -56,10 +86,12 @@ const App = () => {
         musics={currentMusic}
         loading={loading}
         genres={genres}
-        singers={singers}/>
+        singers={singers}
+        setSelectGenre={setSelectGenre}
+        setSelectSinger={setSelectSinger}/>
       <PaginationBar 
         musicPerPage={musicPerPage}
-        totalMusics={musics.length}
+        totalMusics={filteredMusics(musics).length}
         setPageNumber={setPageNumber}
         paginate={paginate}
         currentPage={currentPage}
