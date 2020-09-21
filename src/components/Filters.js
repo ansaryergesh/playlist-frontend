@@ -1,9 +1,7 @@
 import React from 'react'
-// import { BootstrapTable, TableHeaderColumn } from "react-bootstrap-table";
-// const MyFacebookLoader = () => <Facebook />;
-
 
 const Filters = ({genres,singers,loading, setSelectGenre, setSelectSinger}) => {
+    const years = [];
     
     const handleSinger = e => {
         setSelectSinger(e.target.value);

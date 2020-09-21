@@ -35,7 +35,8 @@ const PlayList = ({musics,loading,genres,singers, setSelectGenre, setSelectSinge
         </table>
         </div>
         <div className="md-3">
-       <Filters singers={singers} genres={genres} loading={loading} setSelectGenre={setSelectGenre} setSelectSinger={setSelectSinger}/>
+       <Filters singers={singers} genres={genres} loading={loading} 
+       setSelectGenre={setSelectGenre} setSelectSinger={setSelectSinger}/>
 
     </div>
     </div>
