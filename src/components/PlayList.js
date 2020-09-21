@@ -3,10 +3,6 @@ import Filters from './Filters'
 import { Spinner } from 'react-bootstrap'
 const PlayList = ({musics,loading,genres,singers, setSelectGenre, setSelectSinger, setOrder, order, setSort}) => {
 
-
-    const clearSort = () => {
-        setOrder(null);
-    }
     const handleSort = (e) => {
         setSort(e.target.value);
         
@@ -55,7 +51,6 @@ const PlayList = ({musics,loading,genres,singers, setSelectGenre, setSelectSinge
         <div className="md-3">
        <Filters singers={singers} genres={genres} loading={loading} 
        setSelectGenre={setSelectGenre} setSelectSinger={setSelectSinger}/>
-       
     </div>
     
     </div>
